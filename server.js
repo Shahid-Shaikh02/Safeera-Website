@@ -4,11 +4,32 @@ const dbConfig = require('./dbConfig');
 
 const express = require('express');
 const app = express();
-const fs = require('fs');
 const path = require('path');
 
-app.use(express.json()); // to parse JSON in POST requests
-app.use(express.static('public')); // to serve enquiry.html and other files
+// Serve static files from 'public' folder
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Default route to serve index.html
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+// Optional: handle other pages (e.g., product.html)
+app.get('/product.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'product.html'));
+});
+
+app.get('/contact.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'contact.html'));
+});
+
+app.get('/contact.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'about.html'));
+});
+
+app.get('/contact.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'whyus.html'));
+});
 
 const axios = require('axios'); // axios is required at the top
 
@@ -60,6 +81,7 @@ const axios = require('axios'); // axios is required at the top
 //   }
 // });
 
+// Server port for local or production (like Railway)
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`🚀 Server running at http://localhost:${PORT}`);
