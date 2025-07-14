@@ -1,6 +1,7 @@
 // server.js
-const oracledb = require('oracledb');
-const dbConfig = require('./dbConfig');
+// const oracledb = require('oracledb');
+// const dbConfig = require('./dbConfig');
+// const db = require('./dbConfig');
 
 const express = require('express');
 const app = express();
@@ -80,8 +81,6 @@ const axios = require('axios'); // axios is required at the top
 //     res.status(500).json({ message: 'Database error' });
 //   }
 // });
-
-const db = require('./dbConfig');
 
 // Server port for local or production (like Railway)
 const PORT = process.env.PORT || 3000;
