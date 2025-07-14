@@ -81,6 +81,8 @@ const axios = require('axios'); // axios is required at the top
 //   }
 // });
 
+const db = require('./dbConfig');
+
 // Server port for local or production (like Railway)
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
