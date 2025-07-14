@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Safeera Imports and Exports</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Safeera Imports and Exports</h1>
+        <p>Your trusted import export supplier</p>
+    </header>
+
+    <nav>
+  <a href="index.html" class="nav-link">Home</a>
+  <a href="about.html" class="nav-link">About Us</a>
+  <a href="whyus.html" class="nav-link">why us</a>
+  <a href="product.html" class="nav-link">Products</a>
+  <a href="contact.html" class="nav-link">Contact us</a>
+    <!-- <a href="enquiry.html" class="nav-link">Enquiry</a> -->
+    </nav><br><br>
+
+    <section class="product-section">
+     
+        <div class="product-filter">
+    <select id="catSelect">
+      <!-- <option value="all">All Categories</option> -->
+      <option value="bags">Packaging Materials</option>
+      <option value="industrial">Industrial Chemical Products</option>
+      <!-- <option value="food">Food</option> -->
+      <option value="technology">Machinery Spare Parts</option>
+    </select>
+
+    <select id="subSelect" disabled>
+      <option value="all">All types</option>
+
+      <!-- <option value="perishable" data-parent="food">Perishable</option>
+      <option value="nonperishable" data-parent="food">Non-perishable</option> -->
+
+    </select>
+  </div>
+  <!-- <p>All types of Packaging Materials</p> -->
+
+      <div class="product-grid">
+
+     <div class="product-card" data-cat="industrial">
+    <img src="Images/product/.jpg" alt="Industrial Chemicals">
+    <div class="product-details">
+      <h3>CAUSTIC SODA (SODIUM HYDROXIDE)</h3>
+      <p>Exporter & Supplier of Industrial Chemicals, Solvents, Dyes & Inks.</p>
+    </div>
+  </div>
+
+  <div class="product-card" data-cat="industrial">
+    <img src="Images/product/.jpg" alt="Industrial Acids">
+    <div class="product-details">
+      <h3>INDUSTRIAL ACIDS</h3>
+      <p>Exporter & Supplier of Industrial Chemicals, Solvents, Dyes & Inks.</p>
+    </div>
+  </div>
+  
+  <!-- <div class="product-card" data-cat="food" data-sub="perishable">
+      <img src="Images/product/fresh-mango.jpg" alt="Fresh Mango">
+      <div class="product-details">
+        <h3>FRESH MANGO</h3>
+        <p>Juicy Alphonso mangoes.</p>
+      </div>
+    </div> -->
+
+    <div class="product-card" data-cat="bags">
+    <img src="Images/product/25KG-BOTH-SIDE-BOPP-BAG.jpg" alt="BOPP BAG">
+    <div class="product-details">
+      <h3>25KG BOTH SIDE BOPP BAG</h3>
+      <p>We are committed to supplying a wide range of 25 kg Printed BOPP bags.</p>
+    </div>
+  </div>
+
+    <div class="product-card" data-cat="industrial">
+    <img src="Images/product/.jpg" alt="Industrial Solvents">
+    <div class="product-details">
+      <h3>INDUSTRIAL SOLVENTS</h3>
+      <p>Exporter & Supplier of Industrial Chemicals, Solvents, Dyes & Inks.</p>
+    </div>
+  </div>
+
+    <div class="product-card" data-cat="technology">
+  <div class="product-details">
+    <h3>We are Exporter and Supplier of All types of Machinery Spare Parts</h3>
+    <ul>
+      <li><strong>INDUSTRIAL SPARE PARTS :</strong> Parts for Machinery, equiment like Industrial Belts, Industial couplings,Industial Hoses, O Rings, etc</li>
+      <li><strong>AUTOMOTIVE SPARE PARTS :</strong> Parts for Cars, Trucks, Motorcycles</li>
+      <li><strong>ELECTRONIC SPARE PARTS :</strong> Component for Electronic devices, gadgets, etc.</li>
+    </ul>
+  </div>
+</div>
+
+    <!-- <div class="product-card" data-cat="food" data-sub="perishable">
+      <img src="Images/product/organic-spices.jpg" alt="Organic Green Chilli">
+      <div class="product-details">
+        <h3>ORGANIC GREEN CHILLI</h3>
+        <p>Spicy Green Chilli.</p>
+      </div>
+    </div> -->
+
+    <div class="product-card" data-cat="industrial">
+    <img src="Images/product/.jpg" alt="Leather Chemicals">
+    <div class="product-details">
+      <h3>LEATHER CHEMICALS</h3>
+      <p>Exporter & Supplier of Industrial Chemicals, Solvents, Dyes & Inks.</p>
+    </div>
+  </div>
+
+  <div class="product-card" data-cat="bags">
+    <img src="Images/product/40KG-BOPP-CEMENT-BAG.png" alt="CEMENT BAG">
+    <div class="product-details">
+      <h3>40KG BOPP CEMENT BAG</h3>
+      <p>We customize BOPP bags to meet customer requirements and offer unmatched quality.</p>
+    </div>
+  </div>
+
+  <div class="product-card" data-cat="industrial">
+    <img src="Images/product/.jpg" alt="Rubber Chemicals">
+    <div class="product-details">
+      <h3>RUBBER CHEMICALS</h3>
+      <p>Exporter & Supplier of Industrial Chemicals, Solvents, Dyes & Inks.</p>
+    </div>
+  </div>
+
+  <div class="product-card" data-cat="bags">
+    <img src="Images/product/GLASS-ADHSEIVE-BOTH-SIDE-BOPP-BAG.jpg" alt="GLASS ADHESIVE BAG">
+    <div class="product-details">
+      <h3>GLASS ADHESIVE BOTH SIDE BOPP BAG</h3>
+      <p>We are committed to supplying a wide range of 25 kg Printed BOPP bags.</p>
+    </div>
+  </div>
+
+  <div class="product-card" data-cat="industrial">
+    <img src="Images/product/.jpg" alt="Textile Chemicals">
+    <div class="product-details">
+      <h3>TEXTILE CHEMICALS</h3>
+      <p>Exporter & Supplier of Industrial Chemicals, Solvents, Dyes & Inks.</p>
+    </div>
+  </div>
+
+  <!-- <div class="product-card" data-cat="food" data-sub="nonperishable">
+      <img src="Images/product/fresh-mango.jpg" alt="WHEAT">
+      <div class="product-details">
+        <h3>WHEAT FLOUR</h3>
+        <p>Wheat FLOUR.</p>
+      </div>
+    </div>
+
+    <div class="product-card" data-cat="food" data-sub="nonperishable">
+      <img src="Images/product/organic-spices.jpg" alt="RICE">
+      <div class="product-details">
+        <h3>Basmati Rice</h3>
+        <p>Basmati Rice.</p>
+      </div>
+    </div> -->
+
+  <div class="product-card" data-cat="bags">
+    <img src="Images/product/25KG-BLEACHING-POWDER-BAG.png" alt="BLEACHING POWDER BAG">
+    <div class="product-details">
+      <h3>25KG BLEACHING POWDER BAG</h3>
+      <p>We are committed to supplying a wide range of 25 kg Printed BOPP bags.</p>
+    </div>
+  </div>
+
+  <div class="product-card" data-cat="industrial">
+    <img src="Images/product/.jpg" alt="Industrial Chemicals">
+    <div class="product-details">
+      <h3>INDUSTRIAL CHEMICALS</h3>
+      <p>Exporter & Supplier of Industrial Chemicals, Solvents, Dyes & Inks.</p>
+    </div>
+  </div>
+
+  <div class="product-card" data-cat="bags">
+    <img src="Images/product/30KG-JOINTING-MORTAR-BAG.png" alt="BAG">
+    <div class="product-details">
+      <h3>30KG JOINTING MORTAR BAG</h3>
+      <p>We are committed to supplying a wide range of 30 kg Printed BOPP bags.</p>
+    </div>
+  </div>
+
+  <div class="product-card" data-cat="industrial">
+    <img src="Images/product/.jpg" alt="PRINTING INKS & ADHESIVES">
+    <div class="product-details">
+      <h3>PRINTING INKS & ADHESIVES</h3>
+      <p>Exporter & Supplier of Industrial Chemicals, Solvents, Dyes & Inks.</p>
+    </div>
+  </div>
+
+   <!-- <div class="product-card" data-cat="food" data-sub="perishable">
+      <img src="Images/product/fresh-mango.jpg" alt="BANANA">
+      <div class="product-details">
+        <h3>Fresh Banana</h3>
+        <p>Banana.</p>
+      </div>
+    </div>
+
+    <div class="product-card" data-cat="food" data-sub="perishable">
+      <img src="Images/product/organic-spices.jpg" alt="GUAVAS">
+      <div class="product-details">
+        <h3>GUAVAS</h3>
+        <p>Guavas.</p>
+      </div>
+    </div> -->
+
+     <div class="product-card" data-cat="bags">
+            <img src="Images/product/25KG-ONE-SIDE-BOPP-CEMENT-BAG.jpg" alt="BOPP BAG">
+            <div class="product-details">
+                <h3>25KG ONE SIDE BOPP CEMENT BAG</h3>
+                <p>We are committed to supplying a wide range of 25 kg Printed BOPP bags.</p>
+            </div>
+     </div>
+
+    <div class="product-card" data-cat="industrial">
+    <img src="Images/product/.jpg" alt="RUST & CORROSION PREVENTIVE">
+    <div class="product-details">
+      <h3>RUST & CORROSION PREVENTIVE</h3>
+      <p>Exporter & Supplier of Industrial Chemicals, Solvents, Dyes & Inks.</p>
+    </div>
+  </div>
+
+    <!-- <div class="product-card" data-cat="food" data-sub="perishable">
+      <img src="Images/product/fresh-mango.jpg" alt="APPLES">
+      <div class="product-details">
+        <h3>APPLES</h3>
+        <p>Apples.</p>
+      </div>
+    </div>
+
+    <div class="product-card" data-cat="food" data-sub="perishable">
+      <img src="Images/product/organic-spices.jpg" alt="Lychees">
+      <div class="product-details">
+        <h3>LYCHEES</h3>
+        <p>Lychees.</p>
+      </div>
+    </div> -->
+
+    <div class="product-card" data-cat="bags">
+            <img src="Images/product/GLOSS-2-SIDE-BOPP-BAG.jpg" alt="BOPP BAG">
+            <div class="product-details">
+                <h3>GLOSS 2 SIDE BOPP BAG</h3>
+                <p>We are committed to supplying a wide range of Printed BOPP bags.</p>
+            </div>
+        </div>
+
+    <div class="product-card" data-cat="industrial">
+    <img src="Images/product/.jpg" alt="METAL PRETREATMENT AND FINISHING CHEMICALS">
+    <div class="product-details">
+      <h3>METAL PRETREATMENT AND FINISHING CHEMICALS</h3>
+      <p>Exporter & Supplier of Industrial Chemicals, Solvents, Dyes & Inks.</p>
+    </div>
+  </div>
+
+    <div class="product-card" data-cat="bags">
+            <img src="Images/product/40KG-JOINTING-MORTAR-BAG.jpg" alt="BOPP BAG">
+            <div class="product-details">
+                <h3>40KG JOINTING MORTAR BAG</h3>
+                <p>We are committed to supplying a wide range of 40 Kg Printed BOPP bags.</p>
+            </div>
+        </div>
+   
+    <div class="product-card" data-cat="industrial">
+    <img src="Images/product/.jpg" alt="DEGREASING/DERUSTING CHEMICALS">
+    <div class="product-details">
+      <h3>DEGREASING/DERUSTING CHEMICALS</h3>
+      <p>Exporter & Supplier of Industrial Chemicals, Solvents, Dyes & Inks.</p>
+    </div>
+  </div>
+
+    <!-- <div class="product-card" data-cat="food" data-sub="perishable">
+      <img src="Images/product/fresh-mango.jpg" alt="PINEAPPLES">
+      <div class="product-details">
+        <h3>PINEAPPLES</h3>
+        <p>Pineapples.</p>
+      </div>
+    </div>
+
+    <div class="product-card" data-cat="food" data-sub="perishable">
+      <img src="Images/product/organic-spices.jpg" alt="POMEGRANATES">
+      <div class="product-details">
+        <h3>POMEGRANATES</h3>
+        <p>Pomegranates.</p>
+      </div>
+    </div> -->
+
+      <div class="product-card" data-cat="bags">
+            <img src="Images/product/10KG-CATTLE-FEED-BAG.png" alt="BOPP BAG">
+            <div class="product-details">
+                <h3>10KG CATTLE FEED BAG</h3>
+                <p>We are committed to supplying a wide range of 10 kg Printed BOPP bags.</p>
+            </div>
+        </div>
+
+      <div class="product-card" data-cat="industrial">
+    <img src="Images/product/.jpg" alt="WATER TREATMENT & MAINTENANCE CHEMICALS">
+    <div class="product-details">
+      <h3>WATER TREATMENT & MAINTENANCE CHEMICALS</h3>
+      <p>Exporter & Supplier of Industrial Chemicals, Solvents, Dyes & Inks.</p>
+    </div>
+  </div>
+
+        <div class="product-card" data-cat="bags">
+            <img src="Images/product/GUESSETED-BOTH-SIDE-BOPP-BAG.jpg" alt="BOPP BAG">
+            <div class="product-details">
+                <h3>GUESSETED BOTH SIDE BOPP BAG</h3>
+                <p>We are committed to supplying a wide range of kg Printed BOPP bags.</p>
+            </div>
+        </div>
+ 
+      <div class="product-card" data-cat="industrial">
+    <img src="Images/product/.jpg" alt="METAL TREATMENT SALTS">
+    <div class="product-details">
+      <h3>METAL TREATMENT SALTS</h3>
+      <p>Exporter & Supplier of Industrial Chemicals, Solvents, Dyes & Inks.</p>
+    </div>
+  </div>
+
+        <!-- <div class="product-card" data-cat="food" data-sub="nonperishable">
+      <img src="Images/product/fresh-mango.jpg" alt="ORGANIC TURMERIC">
+      <div class="product-details">
+        <h3>ORGANIC TURMERIC</h3>
+        <p>organic turmeric.</p>
+      </div>
+    </div>
+
+    <div class="product-card" data-cat="food" data-sub="nonperishable">
+      <img src="Images/product/organic-spices.jpg" alt="ORGANIC CARDOMOM">
+      <div class="product-details">
+        <h3>Organic CARDOMOM</h3>
+        <p>Spicy cardamom.</p>
+      </div>
+    </div> -->
+
+       <div class="product-card" data-cat="bags">
+            <img src="Images/product/TILE-ADHESIVE-2-SIDE-BOPP-BAG.jpg" alt="BOPP BAG">
+            <div class="product-details">
+                <h3>TILE ADHESIVE 2 SIDE BOPP BAG</h3>
+                <p>We are committed to supplying a wide range of Printed BOPP bags.</p>
+            </div>
+        </div>
+
+        <div class="product-card" data-cat="bags">
+            <img src="Images/product/25KG-BOPP-FERTILIZER-BAG.jpg" alt="BOPP BAG">
+            <div class="product-details">
+                <h3>25KG BOPP FERTILIZER BAG</h3>
+                <p>We are committed to supplying a wide range of 25 kg Printed BOPP bags.</p>
+            </div>
+        </div>
+
+        <div class="product-card" data-cat="bags">
+            <img src="Images/product/25KGS-BOPP-RICE-BAG-MATT-FINISH.jpg" alt="BOPP BAG">
+            <div class="product-details">
+                <h3>25KG BOPP RICE BAG MATT FINISH</h3>
+                <p>We are committed to supplying a wide range of 25 kg Printed BOPP bags.</p>
+            </div>
+        </div>
+
+        <div class="product-card" data-cat="bags">
+            <img src="Images/product/40KGS-VALVE-TYPE-BAG-FOR-WALLPUTTY.jpg" alt="BOPP BAG">
+            <div class="product-details">
+                <h3>40KGS VALVE TYPE BAG FOR WALLPUTTY</h3>
+                <p>We are committed to supplying a wide range of 40 kg Printed BOPP bags.</p>
+            </div>
+        </div>
+
+        <div class="product-card" data-cat="bags">
+            <img src="Images/product/50KG-BLACK-BAG-WITH-FLEXO-PRINTING.jpg" alt="BOPP BAG">
+            <div class="product-details">
+                <h3>50KG BLACK BAG WITH FLEXO PRINTING</h3>
+                <p>We are committed to supplying a wide range of 50 kg Printed BOPP bags.</p>
+            </div>
+        </div>
+
+        <div class="product-card" data-cat="bags">
+            <img src="Images/product/50KG-BLUE-CHEX-BAG-WITH-TOP-HAMMING-FOR-SUGAR.jpg" alt="BOPP BAG">
+            <div class="product-details">
+                <h3>50KG BLUE CHEX BAG WITH TOP HAMMING FOR SUGAR</h3>
+                <p>We are committed to supplying a wide range of 50 kg Printed BOPP bags.</p>
+            </div>
+        </div>
+
+        <div class="product-card" data-cat="bags">
+            <img src="Images/product/50KG-BOPP-BAG.jpg" alt="BOPP BAG">
+            <div class="product-details">
+                <h3>50KG BOPP BAG</h3>
+                <p>We are committed to supplying a wide range of 50 kg Printed BOPP bags.</p>
+            </div>
+        </div>
+
+        <div class="product-card" data-cat="bags">
+            <img src="Images/product/FERTILIZER-BAG-FOR-50KG.jpg" alt="BOPP BAG">
+            <div class="product-details">
+                <h3>50KG FERTILIZER BAG</h3>
+                <p>We are committed to supplying a wide range of 50 kg Printed BOPP bags.</p>
+            </div>
+        </div>
+
+        <div class="product-card" data-cat="bags">
+            <img src="Images/product/ONE-SIDE-NATURAL-BOPP-BAG.jpg" alt="BOPP BAG">
+            <div class="product-details">
+                <h3>ONE SIDE NATURAL BOPP BAG</h3>
+                <p>We are committed to supplying a wide range of Printed BOPP bags.</p>
+            </div>
+        </div>
+
+        <div class="product-card" data-cat="bags">
+            <img src="Images/product/SAND-BAG-WITH-FELXO-PRINTING.jpg" alt="BOPP BAG">
+            <div class="product-details">
+                <h3>SAND BAG WITH FELXO PRINTING</h3>
+                <p>We are committed to supplying a wide range of Printed BOPP bags.</p>
+            </div>
+        </div>
+
+        <div class="product-card" data-cat="bags">
+            <img src="Images/product/VALVE-TYPE-CEMENT-BAG.jpg" alt="BOPP BAG">
+            <div class="product-details">
+                <h3>VALVE TYPE CEMENT BAG</h3>
+                <p>We are committed to supplying a wide range of Printed BOPP bags.</p>
+            </div>
+        </div>
+
+        <div class="product-card" data-cat="bags">
+            <img src="Images/product/VALVE-TYPE-CEMENT-BAG-2.jpg" alt="BOPP BAG">
+            <div class="product-details">
+                <h3>VALVE-TYPE-CEMENT BAG 2</h3>
+                <p>We are committed to supplying a wide range of Printed BOPP bags.</p>
+            </div>
+        </div>
+
+        <div class="product-card" data-cat="bags">
+            <img src="Images/product/WHITE-SUGAR-BAG-50KGS-WITH-TOP-HAMMING.jpg" alt="BOPP BAG">
+            <div class="product-details">
+                <h3>WHITE SUGAR BAG 50KGS WITH TOP HAMMING</h3>
+                <p>We are committed to supplying a wide range of 50 kg Printed BOPP bags.</p>
+            </div>
+        </div>
+
+     <div class="product-card" data-cat="bags">
+            <img src="Images/product/40KG-VALVE-TYPE-BAG.jpg" alt="BOPP BAG">
+            <div class="product-details">
+                <h3>40KG VALVE TYPE BAG</h3>
+                <p>We are committed to supplying a wide range of 40 kg Printed BOPP bags.</p>
+            </div>
+        </div>
+
+       <div class="product-card" data-cat="bags">
+            <img src="Images/product/D_PUNCH-BOPP-BAG.jpg" alt="BOPP BAG">
+            <div class="product-details">
+                <h3>D-PUNCH BOPP BAG</h3>
+                <p>We are committed to supplying a wide range of Printed BOPP bags.</p>
+            </div>
+        </div>
+
+        <div class="product-card" data-cat="bags">
+            <img src="Images/product/25KG-ONLINE-FLEXO-PRINTING-SEEDS-BAG.jpg" alt="BAG">
+            <div class="product-details">
+                <h3>25KG FLEXO PRINTING SEEDS BAG</h3>
+                <p>We are committed to supplying a wide range of 25 kg Printed BOPP bags.</p>
+            </div>
+        </div>
+
+        <div class="product-card" data-cat="bags">
+            <img src="Images/product/10KG-BOPP-RICE-BAG-WITH-HANDLE.jpg" alt="BOPP BAG">
+            <div class="product-details">
+                <h3>10KG BOPP RICE BAG WITH HANDLE</h3>
+                <p>We are committed to supplying a wide range of 10 kg Printed BOPP bags.</p>
+            </div>
+        </div>
+
+</div>
+</section>
+
+    <footer>
+        Copyright &copy; Safeera Imports and Exports. All rights reserved. Designed & Developed by <span style="color:rgb(255, 0, 17)"><a href="https://github.com/Shahid-Shaikh02" target="_blank">Shodan Web Studio</a></span>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
