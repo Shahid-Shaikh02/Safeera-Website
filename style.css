@@ -179,12 +179,8 @@ textarea {
   font-size: 14px;
   width: 100%;
   box-sizing: border-box;
+   height: auto;
 }
-
-textarea {
-  height: auto;
-}
-
 
 .iti {
   width: 100%;
