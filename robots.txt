@@ -1,11 +1,33 @@
+# Robots.txt for Safeera Imports and Exports
+# Website: https://safeeraexim.com
+
+# Allow all search engines to crawl everything
 User-agent: *
 Allow: /
-Disallow: /Images/
 
+# Allow search engines to index product images (IMPORTANT FOR SEO!)
+Allow: /Images/
+
+# Point to sitemap
 Sitemap: https://safeeraexim.com/sitemap.xml
 
+# Specific rules for Google
 User-agent: Googlebot
 Allow: /
+Allow: /Images/
 
+# Allow Google to index images specifically
+User-agent: Googlebot-Image
+Allow: /Images/
+
+# Specific rules for Bing
 User-agent: Bingbot
 Allow: /
+Allow: /Images/
+
+# Block bad bots (optional security)
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
