@@ -19,6 +19,7 @@ Allow: /Images/
 # Allow Google to index images specifically
 User-agent: Googlebot-Image
 Allow: /Images/
+product images!
 
 # Specific rules for Bing
 User-agent: Bingbot
