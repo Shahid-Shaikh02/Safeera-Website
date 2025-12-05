@@ -36,7 +36,7 @@ if (enquiryForm) {
         
         try {
             // Get reCAPTCHA v3 token
-            const recaptchaToken = await grecaptcha.execute("6LdfdyIsAAAAANp4WBj3oAQwed_TJ7bG2iBkVODM", { action: "submit" });
+            const recaptchaToken = await grecaptcha.execute("6Le1TyIsAAAAAC5Iuoq0qL-nN54hPhbHx-lz1fd9", { action: "submit" });
             
             // Collect form data
             const formData = {
@@ -123,6 +123,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Initial load
   applyFilter();
 });
+
 
 
 
