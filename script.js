@@ -39,7 +39,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
 document.addEventListener("DOMContentLoaded", () => {
   const catSelect = document.getElementById("catSelect");
-  const subSelect = document.getEleme// Handle enquiry form submission with reCAPTCHA v3 - FIXED
+  const subSelect = document.getEleme
+  
+  // Handle enquiry form submission with reCAPTCHA v3 - FIXED
 const enquiryForm = document.getElementById('enquiryForm');
 if (enquiryForm) {
     enquiryForm.addEventListener('submit', function(e) {
@@ -137,6 +139,7 @@ async function submitFormWithToken(token) {
   // Initial load
   applyFilter();
 });
+
 
 
 
