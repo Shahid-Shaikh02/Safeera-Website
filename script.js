@@ -28,45 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Handle enquiry form submission with reCAPTCHA v3
-const enquiryForm = document.getElementById("enquiryForm");
-if (enquiryForm) {
-    enquiryForm.addEventListener("submit", async function (e) {
-        e.preventDefault();
-        
-        try {
-          await grecaptcha.ready();
-            // Get reCAPTCHA v3 token
-            const recaptchaToken = await grecaptcha.execute("6Le1TyIsAAAAAC5Iuoq0qL-nN54hPhbHx-lz1fd9", { action: 'submit' });
-            
-            // Collect form data
-            const formData = {
-                name: document.getElementById("name").value,
-                phone: iti ? iti.getNumber() : phoneInput.value,
-                email: document.getElementById("email").value,
-                subject: document.getElementById("subject").value,
-                message: document.getElementById("message").value,
-                recaptchaToken: recaptchaToken
-            };
-            
-            // Send to Formspree
-            const response = await fetch("https://formspree.io/f/xzzgzdka", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(formData)
-            });
-            
-            const result = await response.json();
-            document.getElementById("responseMessage").textContent = result.message || "Form submitted successfully!";
-            enquiryForm.reset();
-            if (iti) iti.setCountry("in");
-            
-        } catch (error) {
-            document.getElementById("responseMessage").textContent = "Error submitting form: " + error;
-            console.error(error);
-        }
-    });
-}
+
 
   // Handle product redirection
   window.openProduct = function (page) {
@@ -77,7 +39,58 @@ if (enquiryForm) {
 
 document.addEventListener("DOMContentLoaded", () => {
   const catSelect = document.getElementById("catSelect");
-  const subSelect = document.getElementById("subSelect");
+  const subSelect = document.getEleme// Handle enquiry form submission with reCAPTCHA v3 - FIXED
+const enquiryForm = document.getElementById('enquiryForm');
+if (enquiryForm) {
+    enquiryForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // ✅ FIXED: Proper grecaptcha.ready() callback chaining
+        grecaptcha.ready(function() {
+            grecaptcha.execute('6Le1TyIsAAAAAC5Iuoq0qL-nN54hPhbHx-lz1fd9', 
+                {action: 'submit'}
+            ).then(function(token) {
+                // Token received - submit form
+                submitFormWithToken(token);
+            }).catch(function(error) {
+                console.error('reCAPTCHA error:', error);
+                document.getElementById('responseMessage').textContent = 'reCAPTCHA verification failed';
+                document.getElementById('responseMessage').style.color = 'red';
+            });
+        });
+    });
+}
+
+// Separate function to submit form data
+async function submitFormWithToken(token) {
+    try {
+        const formData = {
+            name: document.getElementById('name').value,
+            phone: iti ? iti.getNumber() : document.getElementById('phone').value,
+            email: document.getElementById('email').value,
+            subject: document.getElementById('subject').value,
+            message: document.getElementById('message').value,
+            'g-recaptcha-response': token  // ✅ Token included
+        };
+        
+        const response = await fetch('https://formspree.io/f/xzzgzdka', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(formData)
+        });
+        
+        const result = await response.json();
+        document.getElementById('responseMessage').textContent = result.message || 'Form submitted successfully!';
+        document.getElementById('responseMessage').style.color = 'green';
+        document.getElementById('enquiryForm').reset();
+        if (iti) iti.setCountry('in');
+        
+    } catch (error) {
+        document.getElementById('responseMessage').textContent = 'Error submitting form: ' + error.message;
+        document.getElementById('responseMessage').style.color = 'red';
+        console.error(error);
+    }
+}ntById("subSelect");
   const cards     = document.querySelectorAll(".product-card");
 
   function applyFilter() {
@@ -124,6 +137,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Initial load
   applyFilter();
 });
+
 
 
 
