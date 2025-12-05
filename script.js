@@ -36,21 +36,39 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // ✅ FORM HANDLER - Place OUTSIDE DOMContentLoaded (works on all pages)
+// ✅ SIMPLIFIED: No reCAPTCHA needed
 const enquiryForm = document.getElementById('enquiryForm');
 if (enquiryForm) {
-    enquiryForm.addEventListener('submit', function(e) {
+    enquiryForm.addEventListener('submit', async function(e) {
         e.preventDefault();
         
-        grecaptcha.ready(function() {
-            grecaptcha.execute('6Le1TyIsAAAAAC5Iuoq0qL-nN54hPhbHx-lz1fd9', 
-                {action: 'submit'}
-            ).then(function(token) {
-                submitFormWithToken(token);
-            }).catch(function(error) {
-                console.error('reCAPTCHA error:', error);
-                showMessage('reCAPTCHA verification failed', 'red');
+        try {
+            const phoneValue = iti && iti.getNumber() ? iti.getNumber() : (phoneInput ? phoneInput.value : '');
+            
+            const formData = new FormData();
+            formData.append('name', document.getElementById('name').value);
+            formData.append('phone', phoneValue);
+            formData.append('email', document.getElementById('email').value);
+            formData.append('subject', document.getElementById('subject').value);
+            formData.append('message', document.getElementById('message').value);
+            
+            const response = await fetch('https://formspree.io/f/xzzgzdka', {
+                method: 'POST',
+                body: formData
             });
-        });
+            
+            if (response.ok) {
+                showMessage('Form submitted successfully! We will contact you soon.', 'green');
+                enquiryForm.reset();
+                if (iti) iti.setCountry('in');
+            } else {
+                const errorText = await response.text();
+                throw new Error('Server error: ' + response.status);
+            }
+        } catch (error) {
+            showMessage('Error submitting form: ' + error.message, 'red');
+            console.error(error);
+        }
     });
 }
 
@@ -146,4 +164,5 @@ document.addEventListener("DOMContentLoaded", () => {
     
     applyFilter();
 });
+
 
