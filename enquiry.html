@@ -7,6 +7,12 @@
   <script src="https://www.google.com/recaptcha/api.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@17.0.19/build/css/intlTelInput.min.css">
   <link rel="stylesheet" href="style.css">
+  <script>
+  // Initialize reCAPTCHA v3
+  if (typeof grecaptcha !== 'undefined') {
+    // Ready to use
+  }
+</script>
 </head>
 <body>
   <header>
@@ -55,7 +61,7 @@
         <label for="message">Your Message:</label>
         <textarea id="message" name="message" rows="5" required></textarea>
       
-        <!-- <div class="g-recaptcha" data-sitekey="6Le0XSIsAAAAAPYx1yj219w4Rv0HS1vszcSFX7jk"></div> -->
+        <div class="g-recaptcha" data-sitekey="6Le0XSIsAAAAAPYx1yj219w4Rv0HS1vszcSFX7jk"></div>
         <button type="submit">Send Message</button>
       </form>
       
@@ -74,6 +80,7 @@
     <script src="script.js"></script>
 </body>
 </html>
+
 
 
 
