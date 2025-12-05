@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
       };
 
       try {
-        const response = await fetch("/submit-enquiry", {
+        const response = await fetch("https://formspree.io/f/xzzgzdka", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(formData)
@@ -130,4 +130,5 @@ document.addEventListener("DOMContentLoaded", () => {
   // Initial load
   applyFilter();
 });
+
 
