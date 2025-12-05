@@ -35,41 +35,52 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 });
 
-// ✅ FORM HANDLER - Place OUTSIDE DOMContentLoaded (works on all pages)
-// ✅ SIMPLIFIED: No reCAPTCHA needed
-const enquiryForm = document.getElementById('enquiryForm');
+// FORM HANDLER - Place OUTSIDE DOMContentLoaded (works on all pages)
+// SIMPLIFIED: No reCAPTCHA needed
+const enquiryForm = document.getElementById("enquiryForm");
 if (enquiryForm) {
-    enquiryForm.addEventListener('submit', async function(e) {
+    enquiryForm.addEventListener("submit", async function (e) {
         e.preventDefault();
-        
+
         try {
-            const phoneValue = iti && iti.getNumber() ? iti.getNumber() : (phoneInput ? phoneInput.value : '');
-            
+            const phoneValue = iti && iti.getNumber() ? iti.getNumber() : (phoneInput ? phoneInput.value : "");
+
             const formData = new FormData();
-            formData.append('name', document.getElementById('name').value);
+            formData.append('name', document.getElementById("name").value);
             formData.append('phone', phoneValue);
-            formData.append('email', document.getElementById('email').value);
-            formData.append('subject', document.getElementById('subject').value);
-            formData.append('message', document.getElementById('message').value);
-            
+            formData.append('email', document.getElementById("email").value);
+            formData.append('subject', document.getElementById("subject").value);
+            formData.append('message', document.getElementById("message").value);
+
             const response = await fetch('https://formspree.io/f/xzzgzdka', {
                 method: 'POST',
                 body: formData
             });
-            
-            if (response.ok) {
-                showMessage('Form submitted successfully! We will contact you soon.', 'green');
+
+            // Formspree success check
+            if (response.status === 200 || response.status === 302) {
+                showMessage('✅ Form submitted successfully! We will contact you soon.', 'green');
                 enquiryForm.reset();
-                if (iti) iti.setCountry('in');
+                if (iti) iti.setCountry("in");
             } else {
                 const errorText = await response.text();
                 throw new Error('Server error: ' + response.status);
             }
+            
         } catch (error) {
-            showMessage('Error submitting form: ' + error.message, 'red');
+            showMessage('❌ Error submitting form: ' + error.message, 'red');
             console.error(error);
         }
     });
+}
+
+// Helper function to show messages
+function showMessage(message, color) {
+    const responseMsg = document.getElementById("responseMessage");
+    if (responseMsg) {
+        responseMsg.textContent = message;
+        responseMsg.style.color = color;
+    }
 }
 
 // ✅ Form submission function
@@ -164,5 +175,6 @@ document.addEventListener("DOMContentLoaded", () => {
     
     applyFilter();
 });
+
 
 
