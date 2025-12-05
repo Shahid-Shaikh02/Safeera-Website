@@ -28,51 +28,51 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // // Handle enquiry form submission
-  // const enquiryForm = document.getElementById("enquiryForm");
-  // if (enquiryForm) {
-  //   enquiryForm.addEventListener("submit", async function (e) {
-  //     e.preventDefault();
+  // Handle enquiry form submission
+  const enquiryForm = document.getElementById("enquiryForm");
+  if (enquiryForm) {
+    enquiryForm.addEventListener("submit", async function (e) {
+      e.preventDefault();
 
-  //     if (typeof grecaptcha === "undefined") {
-  //       alert("reCAPTCHA not loaded. Please try again later.");
-  //       return;
-  //     }
+      if (typeof grecaptcha === "undefined") {
+        alert("reCAPTCHA not loaded. Please try again later.");
+        return;
+      }
 
-  //     const recaptchaToken = grecaptcha.getResponse();
-  //     if (!recaptchaToken) {
-  //       alert("Please complete the reCAPTCHA.");
-  //       return;
-  //     }
+      const recaptchaToken = grecaptcha.getResponse();
+      if (!recaptchaToken) {
+        alert("Please complete the reCAPTCHA.");
+        return;
+      }
 
-  //     const formData = {
-  //       name: document.getElementById("name").value,
-  //       phone: iti ? iti.getNumber() : phoneInput.value,
-  //       email: document.getElementById("email").value,
-  //       subject: document.getElementById("subject").value,
-  //       message: document.getElementById("message").value,
-  //       recaptchaToken: recaptchaToken
-  //     };
+      const formData = {
+        name: document.getElementById("name").value,
+        phone: iti ? iti.getNumber() : phoneInput.value,
+        email: document.getElementById("email").value,
+        subject: document.getElementById("subject").value,
+        message: document.getElementById("message").value,
+        recaptchaToken: recaptchaToken
+      };
 
-  //     try {
-  //       const response = await fetch("/submit-enquiry", {
-  //         method: "POST",
-  //         headers: { "Content-Type": "application/json" },
-  //         body: JSON.stringify(formData)
-  //       });
+      try {
+        const response = await fetch("/submit-enquiry", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData)
+        });
 
-  //       const result = await response.json();
-  //       document.getElementById("responseMessage").textContent = result.message;
+        const result = await response.json();
+        document.getElementById("responseMessage").textContent = result.message;
 
-  //       enquiryForm.reset();
-  //       grecaptcha.reset();
-  //       if (iti) iti.setCountry("in");
-  //     } catch (error) {
-  //       document.getElementById("responseMessage").textContent = "There was an error submitting the form.";
-  //       console.error(error);
-  //     }
-  //   });
-  // }
+        enquiryForm.reset();
+        grecaptcha.reset();
+        if (iti) iti.setCountry("in");
+      } catch (error) {
+        document.getElementById("responseMessage").textContent = "There was an error submitting the form.";
+        console.error(error);
+      }
+    });
+  }
 
   // Handle product redirection
   window.openProduct = function (page) {
@@ -130,3 +130,4 @@ document.addEventListener("DOMContentLoaded", () => {
   // Initial load
   applyFilter();
 });
+
