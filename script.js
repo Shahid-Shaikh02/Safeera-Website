@@ -35,60 +35,43 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 });
 
-// FORM HANDLER - Place OUTSIDE DOMContentLoaded (works on all pages)
-// SIMPLIFIED: No reCAPTCHA needed
-// Handle enquiry form submission (WITHOUT reCAPTCHA - for testing)
-const enquiryForm = document.getElementById("enquiryForm");
+// Handler
 if (enquiryForm) {
     enquiryForm.addEventListener("submit", async function (e) {
         e.preventDefault();
 
         try {
-            // Collect form data
-            const formData = {
-                name: document.getElementById("name").value,
-                phone: iti ? iti.getNumber() : phoneInput.value,
-                email: document.getElementById("email").value,
-                subject: document.getElementById("subject").value,
-                message: document.getElementById("message").value
-            };
+            // Create FormData (NO JSON.stringify)
+            const formData = new FormData();
+            formData.append('name', document.getElementById("name").value);
+            formData.append('phone', iti ? iti.getNumber() : phoneInput.value);
+            formData.append('email', document.getElementById("email").value);
+            formData.append('subject', document.getElementById("subject").value);
+            formData.append('message', document.getElementById("message").value);
 
-            console.log("Sending form:", formData); // Debug log
-
-            // Send to Formspree
-            const response = await fetch("https://formspree.io/f/xzzgzdka", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(formData)
+            // Send to Formspree WITHOUT JSON header
+            const response = await fetch('https://formspree.io/f/xzzgzdka', {
+                method: 'POST',
+                body: formData
+                // DO NOT ADD Content-Type header
             });
 
-            console.log("Response status:", response.status); // Debug log
-            
-            const result = await response.json();
-            console.log("Result:", result); // Debug log
-            
-            if (result.ok) {
-                document.getElementById("responseMessage").textContent = "✅ Form submitted successfully!";
+            // Check if successful
+            if (response.status === 200 || response.status === 302 || response.redirected) {
+                document.getElementById("responseMessage").textContent = '✅ Form submitted successfully! We will contact you soon.';
+                document.getElementById("responseMessage").style.color = 'green';
                 enquiryForm.reset();
                 if (iti) iti.setCountry("in");
             } else {
-                document.getElementById("responseMessage").textContent = "❌ Submission failed: " + result.message;
+                throw new Error('Server error: ' + response.status);
             }
             
         } catch (error) {
-            document.getElementById("responseMessage").textContent = "❌ Error: " + error.message;
-            console.error("Complete error object:", error);
+            document.getElementById("responseMessage").textContent = '❌ Error submitting form: ' + error.message;
+            document.getElementById("responseMessage").style.color = 'red';
+            console.error(error);
         }
     });
-}
-
-// Helper function to show messages
-function showMessage(message, color) {
-    const responseMsg = document.getElementById("responseMessage");
-    if (responseMsg) {
-        responseMsg.textContent = message;
-        responseMsg.style.color = color;
-    }
 }
 
 // ✅ Form submission function
@@ -183,6 +166,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
     applyFilter();
 });
+
 
 
 
