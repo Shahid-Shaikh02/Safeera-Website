@@ -55,34 +55,39 @@ if (enquiryForm) {
 }
 
 // ✅ Form submission function
+// ✅ FIXED: Formspree-compatible submission
 async function submitFormWithToken(token) {
     try {
         // Safe phone handling
         const phoneValue = iti && iti.getNumber() ? iti.getNumber() : (phoneInput ? phoneInput.value : '');
         
-        const formData = {
-            name: document.getElementById('name').value,
-            phone: phoneValue,
-            email: document.getElementById('email').value,
-            subject: document.getElementById('subject').value,
-            message: document.getElementById('message').value,
-            'g-recaptcha-response': token
-        };
+        // ✅ FIXED: Use FormData instead of JSON
+        const formData = new FormData();
+        formData.append('name', document.getElementById('name').value);
+        formData.append('phone', phoneValue);
+        formData.append('email', document.getElementById('email').value);
+        formData.append('subject', document.getElementById('subject').value);
+        formData.append('message', document.getElementById('message').value);
+        formData.append('g-recaptcha-response', token);
         
         const response = await fetch('https://formspree.io/f/xzzgzdka', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(formData)
+            body: formData  // ✅ No Content-Type header (Formspree auto-detects)
         });
         
-        const result = await response.json();
-        showMessage(result.message || 'Form submitted successfully!', 'green');
-        enquiryForm.reset();
-        if (iti) iti.setCountry('in');
+        // ✅ Check actual response status
+        if (response.ok) {
+            showMessage('Form submitted successfully! We will contact you soon.', 'green');
+            document.getElementById('enquiryForm').reset();
+            if (iti) iti.setCountry('in');
+        } else {
+            const errorText = await response.text();
+            throw new Error('Server error: ' + response.status + ' - ' + errorText);
+        }
         
     } catch (error) {
         showMessage('Error submitting form: ' + error.message, 'red');
-        console.error(error);
+        console.error('Form submission error:', error);
     }
 }
 
@@ -141,3 +146,4 @@ document.addEventListener("DOMContentLoaded", () => {
     
     applyFilter();
 });
+
