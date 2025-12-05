@@ -1,78 +1,72 @@
+// ✅ GLOBAL iti variable - Fixes "iti is not defined"
+let iti = null;
+let phoneInput = null;
+
+// DOMContentLoaded for nav + phone input + intl-tel-input
 document.addEventListener("DOMContentLoaded", function () {
-  // Highlight current nav link
-  const links = document.querySelectorAll(".nav-link");
-  const currentPage = location.pathname.split("/").pop() || "index.html"; // Default to index.html if no specific page
+    // Highlight current nav link
+    const links = document.querySelectorAll(".nav-link");
+    const currentPage = location.pathname.split("/").pop() || "index.html";
+    links.forEach((link) => {
+        if (link.getAttribute("href") === currentPage) {
+            link.classList.add("active");
+        }
+    });
 
-  links.forEach((link) => {
-    if (link.getAttribute("href") === currentPage) {
-      link.classList.add("active");
+    // Restrict phone to numeric only
+    phoneInput = document.getElementById("phone");
+    if (phoneInput) {
+        phoneInput.addEventListener("input", function () {
+            this.value = this.value.replace(/D/g, "");
+        });
+
+        // Initialize intl-tel-input (makes iti global)
+        iti = window.intlTelInput(phoneInput, {
+            initialCountry: "in",
+            separateDialCode: true,
+            preferredCountries: ["in", "us", "gb"],
+            utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js"
+        });
     }
-  });
 
-  // Restrict phone to numeric only
-  const phoneInput = document.getElementById("phone");
-  if (phoneInput) {
-    phoneInput.addEventListener("input", function () {
-      this.value = this.value.replace(/\D/g, "");
-    });
-  }
-
-  // Initialize intl-tel-input
-  let iti;
-  if (phoneInput) {
-    iti = window.intlTelInput(phoneInput, {
-      initialCountry: "in",
-      separateDialCode: true,
-      preferredCountries: ["in", "us", "gb"],
-      utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js"
-    });
-  }
-
-
-
-  // Handle product redirection
-  window.openProduct = function (page) {
-    window.location.href = page;
-  };
+    // Handle product redirection
+    window.openProduct = function (page) {
+        window.location.href = page;
+    };
 });
 
-
-document.addEventListener("DOMContentLoaded", () => {
-  const catSelect = document.getElementById("catSelect");
-  const subSelect = document.getEleme
-  
-  // Handle enquiry form submission with reCAPTCHA v3 - FIXED
+// ✅ FORM HANDLER - Place OUTSIDE DOMContentLoaded (works on all pages)
 const enquiryForm = document.getElementById('enquiryForm');
 if (enquiryForm) {
     enquiryForm.addEventListener('submit', function(e) {
         e.preventDefault();
         
-        // ✅ FIXED: Proper grecaptcha.ready() callback chaining
         grecaptcha.ready(function() {
             grecaptcha.execute('6Le1TyIsAAAAAC5Iuoq0qL-nN54hPhbHx-lz1fd9', 
                 {action: 'submit'}
             ).then(function(token) {
-                // Token received - submit form
                 submitFormWithToken(token);
             }).catch(function(error) {
                 console.error('reCAPTCHA error:', error);
-                document.getElementById('responseMessage').textContent = 'reCAPTCHA verification failed';
-                document.getElementById('responseMessage').style.color = 'red';
+                showMessage('reCAPTCHA verification failed', 'red');
             });
         });
     });
 }
 
-// Separate function to submit form data
+// ✅ Form submission function
 async function submitFormWithToken(token) {
     try {
+        // Safe phone handling
+        const phoneValue = iti && iti.getNumber() ? iti.getNumber() : (phoneInput ? phoneInput.value : '');
+        
         const formData = {
             name: document.getElementById('name').value,
-            phone: iti ? iti.getNumber() : document.getElementById('phone').value,
+            phone: phoneValue,
             email: document.getElementById('email').value,
             subject: document.getElementById('subject').value,
             message: document.getElementById('message').value,
-            'g-recaptcha-response': token  // ✅ Token included
+            'g-recaptcha-response': token
         };
         
         const response = await fetch('https://formspree.io/f/xzzgzdka', {
@@ -82,71 +76,68 @@ async function submitFormWithToken(token) {
         });
         
         const result = await response.json();
-        document.getElementById('responseMessage').textContent = result.message || 'Form submitted successfully!';
-        document.getElementById('responseMessage').style.color = 'green';
-        document.getElementById('enquiryForm').reset();
+        showMessage(result.message || 'Form submitted successfully!', 'green');
+        enquiryForm.reset();
         if (iti) iti.setCountry('in');
         
     } catch (error) {
-        document.getElementById('responseMessage').textContent = 'Error submitting form: ' + error.message;
-        document.getElementById('responseMessage').style.color = 'red';
+        showMessage('Error submitting form: ' + error.message, 'red');
         console.error(error);
     }
-}ntById("subSelect");
-  const cards     = document.querySelectorAll(".product-card");
+}
 
-  function applyFilter() {
-    const cat = catSelect.value;
-    const sub = subSelect.value;
+// ✅ Helper function
+function showMessage(text, color) {
+    const msgEl = document.getElementById('responseMessage');
+    if (msgEl) {
+        msgEl.textContent = text;
+        msgEl.style.color = color;
+    }
+}
 
-    cards.forEach(card => {
-      const cardCat = card.dataset.cat;
-      const cardSub = card.dataset.sub || "all";
-
-      const catMatch = (cat === "all") || (cardCat === cat);
-      const subMatch = (sub === "all") || (cardSub === sub);
-
-      card.style.display = (catMatch && subMatch) ? "block" : "none";
-    });
-  }
-
-  catSelect.addEventListener("change", () => {
-    const selectedCat = catSelect.value;
-
-    // Enable subSelect only if options exist for selected category
-    let hasSubOptions = false;
-
-    Array.from(subSelect.options).forEach(option => {
-      const parent = option.dataset.parent;
-      const isGlobal = !parent && option.value === "all";
-
-      if (isGlobal || parent === selectedCat) {
-        option.style.display = "block";
-        if (parent === selectedCat) hasSubOptions = true;
-      } else {
-        option.style.display = "none";
-      }
-    });
-
-    subSelect.disabled = !hasSubOptions;
-    subSelect.value = "all"; // Reset to default option
-
+// Product filter functionality (separate DOMContentLoaded)
+document.addEventListener("DOMContentLoaded", () => {
+    const catSelect = document.getElementById("catSelect");
+    const subSelect = document.getElementById("subSelect");
+    const cards = document.querySelectorAll(".product-card");
+    
+    function applyFilter() {
+        const cat = catSelect.value;
+        const sub = subSelect.value;
+        cards.forEach(card => {
+            const cardCat = card.dataset.cat;
+            const cardSub = card.dataset.sub || "all";
+            const catMatch = (cat === "all") || (cardCat === cat);
+            const subMatch = (sub === "all") || (cardSub === sub);
+            card.style.display = (catMatch && subMatch) ? "block" : "none";
+        });
+    }
+    
+    if (catSelect) {
+        catSelect.addEventListener("change", () => {
+            const selectedCat = catSelect.value;
+            let hasSubOptions = false;
+            
+            Array.from(subSelect.options).forEach(option => {
+                const parent = option.dataset.parent;
+                const isGlobal = !parent && option.value === "all";
+                if (isGlobal || parent === selectedCat) {
+                    option.style.display = "block";
+                    if (parent === selectedCat) hasSubOptions = true;
+                } else {
+                    option.style.display = "none";
+                }
+            });
+            
+            subSelect.disabled = !hasSubOptions;
+            subSelect.value = "all";
+            applyFilter();
+        });
+    }
+    
+    if (subSelect) {
+        subSelect.addEventListener("change", applyFilter);
+    }
+    
     applyFilter();
-  });
-
-  subSelect.addEventListener("change", applyFilter);
-
-  // Initial load
-  applyFilter();
 });
-
-
-
-
-
-
-
-
-
-
-
