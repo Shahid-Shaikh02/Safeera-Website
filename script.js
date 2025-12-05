@@ -37,39 +37,47 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // FORM HANDLER - Place OUTSIDE DOMContentLoaded (works on all pages)
 // SIMPLIFIED: No reCAPTCHA needed
+// Handle enquiry form submission (WITHOUT reCAPTCHA - for testing)
 const enquiryForm = document.getElementById("enquiryForm");
 if (enquiryForm) {
     enquiryForm.addEventListener("submit", async function (e) {
         e.preventDefault();
 
         try {
-            const phoneValue = iti && iti.getNumber() ? iti.getNumber() : (phoneInput ? phoneInput.value : "");
+            // Collect form data
+            const formData = {
+                name: document.getElementById("name").value,
+                phone: iti ? iti.getNumber() : phoneInput.value,
+                email: document.getElementById("email").value,
+                subject: document.getElementById("subject").value,
+                message: document.getElementById("message").value
+            };
 
-            const formData = new FormData();
-            formData.append('name', document.getElementById("name").value);
-            formData.append('phone', phoneValue);
-            formData.append('email', document.getElementById("email").value);
-            formData.append('subject', document.getElementById("subject").value);
-            formData.append('message', document.getElementById("message").value);
+            console.log("Sending form:", formData); // Debug log
 
-            const response = await fetch('https://formspree.io/f/xzzgzdka', {
-                method: 'POST',
-                body: formData
+            // Send to Formspree
+            const response = await fetch("https://formspree.io/f/xzzgzdka", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formData)
             });
 
-            // Formspree success check
-            if (response.status === 200 || response.status === 302) {
-                showMessage('✅ Form submitted successfully! We will contact you soon.', 'green');
+            console.log("Response status:", response.status); // Debug log
+            
+            const result = await response.json();
+            console.log("Result:", result); // Debug log
+            
+            if (result.ok) {
+                document.getElementById("responseMessage").textContent = "✅ Form submitted successfully!";
                 enquiryForm.reset();
                 if (iti) iti.setCountry("in");
             } else {
-                const errorText = await response.text();
-                throw new Error('Server error: ' + response.status);
+                document.getElementById("responseMessage").textContent = "❌ Submission failed: " + result.message;
             }
             
         } catch (error) {
-            showMessage('❌ Error submitting form: ' + error.message, 'red');
-            console.error(error);
+            document.getElementById("responseMessage").textContent = "❌ Error: " + error.message;
+            console.error("Complete error object:", error);
         }
     });
 }
@@ -175,6 +183,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
     applyFilter();
 });
+
 
 
 
