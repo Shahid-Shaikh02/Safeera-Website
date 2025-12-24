@@ -126,11 +126,10 @@
 
        <div class="form-group-inline">
         <label for="phone">Your Phone Number:</label>
-            <input type="tel" id="phone" name="phone" required>      </div>    
+        <input type="tel" id="phone" name="phone" required>      </div>    
 
       <!-- <input type="hidden" name="g-recaptcha-response" id="recaptcha-token"> -->
         
-        <div class="form-row">
          <div class="form-group-inline small-email">
           <label for="email">Your Email:</label>
           <input type="email" id="email" name="email" required>
@@ -140,11 +139,13 @@
           <label for="subject">Subject</label>
           <input type="text" id="subject" name="subject" placeholder="Enter subject" required />
          </div>
-        </div><br><br>
 
+        <div class="form-group-inline">
         <label for="message">Your Message:</label>
         <textarea id="message" name="message" rows="5" required></textarea>
-      
+        </div>
+        </div>
+        
         <!-- <div class="g-recaptcha" data-sitekey="6LedaSIsAAAAAH2FAQJZ33esygP82-2OBqVc1aVz"></div> -->
         <button type="submit">Send Message</button>
       </form>
@@ -164,6 +165,7 @@
     <script src="script.js"></script>
 </body>
 </html>
+
 
 
 
