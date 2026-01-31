@@ -42,24 +42,24 @@ document.addEventListener("DOMContentLoaded", function () {
     ?.classList.add("active");
   }
 
+      const select = document.getElementById("catSelect");
+    if (!select) return;
+
+    const currentUrl = window.location.href;
+
+    for (const option of select.options) {
+        if (currentUrl.startsWith(option.value)) {
+            option.selected = true;
+            break;
+        }
+    }
+  });
+
     function navigateCategory(url) {
     if (url) {
         window.location.href = url;
     }
     }
-
-//     const select = document.getElementById("catSelect");
-//     if (!select) return;
-
-//     const currentUrl = window.location.href;
-
-//     for (const option of select.options) {
-//         if (currentUrl.startsWith(option.value)) {
-//             option.selected = true;
-//             break;
-//         }
-//     }
-// });
 
 // function navigateCategory(url) {
 //     if (url) {
