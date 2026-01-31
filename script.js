@@ -45,9 +45,6 @@ document.addEventListener("DOMContentLoaded", function () {
     .querySelector('.nav-link[href="product.html"]')
     ?.classList.add("active");
   }
-  if (href === "product.html" && window.location.pathname.includes("/products/")) {
-        link.classList.add("active");
-    }
 
       const select = document.getElementById("catSelect");
     if (!select) return;
