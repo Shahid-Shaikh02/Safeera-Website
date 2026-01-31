@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
   }
-// Highlight nav
+  // Highlight nav
   const links = document.querySelectorAll(".nav-link");
   links.forEach(link => {
     if (link.getAttribute("href") === page) {
@@ -33,9 +33,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Keep Products nav active on all product-related pages
   if (
-  page === "products/packaging-material/packaging-material.html" ||
-  page === "products/chemical-products/Chemical-Products.html" ||
-  page === "products/machinery-parts/machinery-parts.html"
+  page === "/product.html" ||  
+  page === "/products/packaging-material/packaging-material.html" ||
+  page === "/products/chemical-products/Chemical-Products.html" ||
+  page === "/products/machinery-parts/machinery-parts.html"
   ) {
   document
     .querySelector('.nav-link[href="product.html"]')
