@@ -26,6 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Highlight nav
   const links = document.querySelectorAll(".nav-link");
   links.forEach(link => {
+    console.log("PAGE VALUE:", page);
     if (link.getAttribute("href") === page) {
       link.classList.add("active");
     }
