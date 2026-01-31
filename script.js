@@ -15,15 +15,16 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Sync dropdown with current page
-  const catSelect = document.getElementById("catSelect");
-  if (catSelect) {
-    for (let option of catSelect.options) {
-      if (option.value === page) {
-        option.selected = true;
-        break;
-      }
-    }
-  }
+  // const catSelect = document.getElementById("catSelect");
+  // if (catSelect) {
+  //   for (let option of catSelect.options) {
+  //     if (option.value === page) {
+  //       option.selected = true;
+  //       break;
+  //     }
+  //   }
+  // }
+  
   // Highlight nav
   const links = document.querySelectorAll(".nav-link");
   links.forEach(link => {
@@ -44,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
     ?.classList.add("active");
   }
 
-      const select = document.getElementById("catSelect");
+    const select = document.getElementById("catSelect");
     if (!select) return;
 
     const currentUrl = window.location.href;
@@ -62,12 +63,6 @@ document.addEventListener("DOMContentLoaded", function () {
         window.location.href = url;
     }
     }
-
-// function navigateCategory(url) {
-//     if (url) {
-//         window.location.href = url;
-//     }
-// }
     
   //SUBSELECT FUNCTIONALITY
   // Enable sub-category ONLY on Machinery page
