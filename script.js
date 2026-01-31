@@ -110,8 +110,7 @@ document.addEventListener("DOMContentLoaded", function () {
             preferredCountries: ["in", "us", "gb"],
             utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js"
         });
-    }
-});
+    };
 
 // ✅ FORM HANDLER - Outside DOMContentLoaded (works on all pages)
 // ✅ FINAL FIX: Form data sends successfully, ignore CORS error
