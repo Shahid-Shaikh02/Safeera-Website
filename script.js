@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const productCards = document.querySelectorAll(".product-card");
 
   if (subSelect) 
-  if (subSelect && page === "machinery-parts.html") {
+  if (subSelect && page === "products/machinery-parts/machinery-parts.html") {
     subSelect.disabled = false;
     subSelect.addEventListener("change", function () {
     const selectedSub = this.value;
