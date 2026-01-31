@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Redirect Products → Packaging by default
   if (page === "product.html") {
-    window.location.replace("packaging-material.html");
+    window.location.replace("products/packaging-material/packaging-material.html");
     return;
   }
 
@@ -33,9 +33,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Keep Products nav active on all product-related pages
   if (
-  page === "packaging-material.html" ||
-  page === "Chemical-Products.html" ||
-  page === "machinery-parts.html"
+  page === "products/packaging-material/packaging-material.html" ||
+  page === "products/chemical-products/Chemical-Products.html" ||
+  page === "products/machinery-parts/machinery-parts.html"
   ) {
   document
     .querySelector('.nav-link[href="product.html"]')
