@@ -5,7 +5,9 @@ let phoneInput = null;
 // DOMContentLoaded for nav + phone input + intl-tel-input
 document.addEventListener("DOMContentLoaded", function () {
 
-  const page = location.pathname.split("/").pop() || "index.html";
+  const path = window.location.pathname;
+  const page = path.split("/").pop() || "index.html";
+  console.log("PAGE VALUE:", page);
 
   // Redirect Products → Packaging by default
   if (page === "product.html") {
