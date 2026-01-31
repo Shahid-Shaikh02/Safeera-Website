@@ -28,8 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Highlight nav
   const links = document.querySelectorAll(".nav-link");
   links.forEach(link => {
-    const href = link.getAttribute("href");
-    if (href === page) {
+    if (link.getAttribute("href") === page) {
       link.classList.add("active");
     }
   });
