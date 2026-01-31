@@ -28,8 +28,8 @@ document.addEventListener("DOMContentLoaded", function () {
   // Highlight nav
   const links = document.querySelectorAll(".nav-link");
   links.forEach(link => {
-    console.log("PAGE VALUE:", page);
-    if (link.getAttribute("href") === page) {
+    const href = link.getAttribute("href");
+    if (href === page) {
       link.classList.add("active");
     }
   });
@@ -45,6 +45,9 @@ document.addEventListener("DOMContentLoaded", function () {
     .querySelector('.nav-link[href="product.html"]')
     ?.classList.add("active");
   }
+  if (href === "product.html" && window.location.pathname.includes("/products/")) {
+        link.classList.add("active");
+    }
 
       const select = document.getElementById("catSelect");
     if (!select) return;
