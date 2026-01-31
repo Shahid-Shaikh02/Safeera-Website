@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const path = window.location.pathname;
   const page = path.split("/").pop() || "index.html";
-  console.log("PAGE VALUE:", page);
+  console.log("PAGE VALUE (global):", page);
 
   // Redirect Products → Packaging by default
   if (page === "product.html") {
