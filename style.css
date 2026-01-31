@@ -71,7 +71,8 @@ nav .nav-link.active {
 }
 
 nav .nav-link:hover {
-  color: red;
+  color: red !important; /* Force red to see if it works */
+  /* border-bottom: 3px solid #ff0000; */
 }
 
 /* =========================
