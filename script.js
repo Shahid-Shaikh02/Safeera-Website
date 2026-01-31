@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Redirect Products → Packaging by default
   if (page === "product.html") {
-    window.location.replace("products/packaging-material/packaging-material.html");
+    window.location.replace("https://safeeraexim.com/products/packaging-material/packaging-material.html");
     return;
   }
 
