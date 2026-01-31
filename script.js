@@ -33,9 +33,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Keep Products nav active on all product-related pages
   if (
-  page === "products/packaging-material/packaging-material.html" ||
-  page === "products/chemical-products/Chemical-Products.html" ||
-  page === "products/machinery-parts/machinery-parts.html"
+  page === "https://safeeraexim.com/products/packaging-material/packaging-material.html" ||
+  page === "https://safeeraexim.com/products/chemical-products/Chemical-Products.html" ||
+  page === "https://safeeraexim.com/products/machinery-parts/machinery-parts.html"
   ) {
   document
     .querySelector('.nav-link[href="product.html"]')
